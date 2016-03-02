@@ -1,6 +1,6 @@
 var graphicsSystem = require('./systems/graphics');
 var bird = require('./entities/bird');
-var pipes = require('.entities/pipe');
+var pipes = require('./entities/pipe');
 
 var FlappyBird = function() {
     this.entities = [new bird.Bird(), new pipe.Pipes()];

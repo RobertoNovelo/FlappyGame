@@ -12,10 +12,16 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 
 
+// JavaScript linting task
+gulp.task('jshint', function() {
+	return gulp.src('js/*.js')
+		.pipe(jshint())
+		.pipe(jshint.reporter('default'));
+});
 
 // JavaScript build task, removes whitespace and concatenates all files
 gulp.task('scripts', function() {
-  return browserify('FlappyGame/js/main.js')
+  return browserify('js/main.js')
     .bundle()
     .pipe(source('app.js'))
     .pipe(buffer())
@@ -25,14 +31,14 @@ gulp.task('scripts', function() {
 
 // Minify index
 gulp.task('html', function() {
-  return gulp.src('FlappyGame/index.html')
+  return gulp.src('index.html')
     .pipe(minifyHTML())
     .pipe(gulp.dest('build/'));
 });
 
 // Watch task
 gulp.task('watch', function() {
-	gulp.watch('FlappyGame/js/*.js', ['jshint']);
+	gulp.watch('js/*.js', ['jshint']);
 });
 
 // Default task
