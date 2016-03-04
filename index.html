@@ -3,8 +3,31 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Flappy Bird Clone</title>
+	<link rel="stylesheet" href="./css/main.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
 <body>
+	<canvas id="main-canvas"></canvas>
+	<div id="overlay">
+		<div id="stamppick" class="options pointer">
+			<i class="fa fa-cogs fa-2"></i>
+		</div>
+		<div id="leaderboard" class="options pointer">
+			<i class="fa fa-trophy fa-2"></i>
+		</div>
+		<div id="userStamp" class="options">
+			<h2>Current Stamp</h2>
+			<img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Stamp_Middle_Congo_1907_20c.jpg">		
+		</div>
+		<div id="stamppickscreen">	
+			<div class="stampcontainer">
+				<h2>Stamp Name</h2>
+				<img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Stamp_Middle_Congo_1907_20c.jpg">			
+			</div>
+		</div>
+	</div>
+	<script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
 	<script src="js/main.js"></script>
+	
 </body>
 </html>

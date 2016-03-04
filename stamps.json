@@ -1,0 +1,29 @@
+{
+	"stamps": [
+		{
+			"unlocked": true,
+			"image": "http://unofficialtech.com/p/2016/01/how-much-are-postage-stamps-pufcstzp.jpg",
+			"stamp_name": "image1"
+		},
+		{
+			"unlocked": true,
+			"image": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Stamp_Middle_Congo_1907_20c.jpg",
+			"stamp_name": "image1"
+		},
+		{
+			"unlocked": true,
+			"image": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Stamp_Canada_1929_50c_Bluenose.jpg",
+			"stamp_name": "image1"
+		},
+		{
+			"unlocked": true,
+			"image": "https://www.usps.com/assets/images/stamps/2015/summer-harvest/gallery/stamp_SumHarvest_gallery-1.png",
+			"stamp_name": "image1"
+		},
+		{
+			"unlocked": true,
+			"image": "https://www.usps.com/assets/images/stamps/2015/summer-harvest/gallery/stamp_SumHarvest_gallery-4.png",
+			"stamp_name": "image1"
+		}
+	]
+}
