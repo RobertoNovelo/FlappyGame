@@ -7,6 +7,7 @@
 
 var available_stamps = [];
 var current_stamp = 0;
+var maxscore = 0;
 
 $("#stamppick").on("click", function() {
 	$(".options").fadeOut("fast", function() {
@@ -15,18 +16,20 @@ $("#stamppick").on("click", function() {
 });
 
 $("#stamppickscreen").on("click", ".stampcontainer" ,function() {
-	$(".stampcontainer").removeClass("selectedstamp");
-	$(this).addClass("selectedstamp");
-	setUserStamp($(this).data("stampindex"));
-	setUserStampScreen(current_stamp);
+	if (available_stamps[$(this).data("stampindex")].unlocked) {
+		$(".stampcontainer").removeClass("selectedstamp");
+		$(this).addClass("selectedstamp");
+		setUserStamp($(this).data("stampindex"));
+		setUserStampScreen(current_stamp);
 
-	setTimeout(function() {
-		$("#stamppickscreen").fadeOut("fast", function() {
-			$(".options").fadeIn("fast");
-		});		
-	}, 600);
+		setTimeout(function() {
+			$("#stamppickscreen").fadeOut("fast", function() {
+				$(".options").fadeIn("fast");
+			});		
+		}, 600);
+	}
+
 })
-
 
 function loadStamps() {
 	$.getJSON("./stamps.json", function(data) {
@@ -34,6 +37,7 @@ function loadStamps() {
 		showStampOptions();
 		console.log(available_stamps);
 		setUserStampScreen(current_stamp);
+		unlockStamps();
 	})
 }
 
@@ -42,14 +46,18 @@ function showStampOptions() {
 	for (var stamp in available_stamps) {
 		console.log(available_stamps[stamp]);
 		var isSelected = (stamp == current_stamp)?'selectedstamp':'';
-		$("#stamppickscreen").append('<div data-stampindex="'+ stamp +'"class="stampcontainer pointer transition ' + isSelected + '"><h2>' + available_stamps[stamp].stamp_name + '</h2><img src="' + available_stamps[stamp].image + '"></div>');
+		var isLocked = (!available_stamps[stamp].unlocked)?'lockedstamp':'';
+		$("#stamppickscreen").append('<div data-stampindex="'+ stamp +'"class="stampcontainer pointer transition ' + isLocked + ' ' + isSelected + '"><h2>' + available_stamps[stamp].stamp_name + '</h2><img src="' + available_stamps[stamp].image + '"></div>');
 	}
 
 }
 
-function initUserStamp() {
+function initGame() {
 	if (null != localStorage.getItem("current_stamp")) {
 		current_stamp = localStorage.getItem("current_stamp");
+	}
+	if (null != localStorage.getItem("maxscore")) {
+		maxscore = localStorage.getItem("maxscore");
 	}
 }
 
@@ -66,7 +74,28 @@ function setUserStampScreen(stamp_index) {
 	$("#userStamp img").attr("src", available_stamps[stamp_index].image);
 }
 
+function unlockStamps() {
+	for (var stamp in available_stamps) {
+		if (maxscore >= available_stamps[stamp].unlocked_score) {
+			available_stamps[stamp].unlocked = true;
+		}
+	}
+	showStampOptions();
+}
+
+function endGame(score) {
+	var newHigh = false;
+
+	if (score > maxscore) {
+		newHigh = true;
+		localStorage.setItem("maxscore", score);
+		maxscore = score;
+		unlockStamps();
+	}
+	return newHigh;
+}
+
 $(function() {
-	initUserStamp();
+	initGame();
 	loadStamps();
 })
