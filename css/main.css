@@ -6,6 +6,14 @@
 	transition: all .25s ease; 
 }
 
+html { 
+  background: url(./../images/beach-background.png) no-repeat center center; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 html, body {
     margin: 0;
     padding: 0;
@@ -25,6 +33,7 @@ html, body {
 canvas#main-canvas {
     width: 100%;
     height: 100%;
+    background-image: ;
 }
 
 div#overlay {
@@ -34,6 +43,7 @@ div#overlay {
 	left: 0;
 	width: 100%;
 	height: 100%;
+
 }
 
 div#stamppick {
@@ -71,15 +81,15 @@ div#stamppickscreen {
 	top: calc(50% - 15em);
 	width: 100vw;
 	height: 30em;
-	background-color: blue;
 	overflow-x: auto;
 	white-space: nowrap;
+	border: 5px black solid;
 }
 
 .stampcontainer {
-	height: 24em;
-	width: 24em;
-	margin-top: 3em;
+	height: 15em;
+	width: 15em;
+	margin-top: 1.5em;
 	margin-left: 1em;
 	background-color: orange;
 	display: inline-block;
@@ -89,14 +99,15 @@ div#stamppickscreen {
 }
 
 .stampcontainer img {
-	max-width: 20em;
-	max-height: 20em;
+	max-width: 12em;
+	max-height: 10em;
 
 }
 
 .selectedstamp {
-	border: 3px solid white;
+	border: 3px solid black;
 	border-radius: 4px;
+	box-sizing: border-box;
 }
 
 #userStamp {
@@ -115,4 +126,25 @@ div#stamppickscreen {
 
 .lockedstamp {
 	opacity: .5;
+}
+
+.background_choice {
+	z-index: 100;
+	width: 750px;
+	height: 7em;
+	float: right;
+	overflow: hidden;
+
+}
+
+.background_choice h2 {
+	float: left;
+	margin-top: 1.9em;
+}
+
+.background_icon {
+	width: 10em;
+	height: 5em;
+	margin-top: 1em;
+	margin-left: 1em;
 }

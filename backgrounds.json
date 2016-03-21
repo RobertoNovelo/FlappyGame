@@ -1,0 +1,16 @@
+{
+	"backgrounds": [
+		{
+			"image": "images/sunset-background.jpg",
+			"stamp_name": "Sunset"
+		},
+		{
+			"image": "images/beach-background.png",
+			"stamp_name": "Beach"
+		},
+		{
+			"image": "canyon-background.png",
+			"stamp_name": "Canyon"
+		}		
+	]
+}
