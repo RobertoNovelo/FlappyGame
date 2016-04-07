@@ -1,15 +1,32 @@
-// var flappyBird = require('./flappy_bird');
+var flappyBird = require('./flappy_bird');
+var app = null;
 
 /*document.addEventListener('DOMContentLoaded', function() {
-    var app = new flappyBird.FlappyBird();
-    app.run();
+    app = new flappyBird.FlappyBird(available_stamps[current_stamp].image);
 });*/
+
+$('.play-button').on('click', function() {
+	$('#overlay').fadeOut(1000, function() {
+		app = new flappyBird.FlappyBird(available_stamps[current_stamp].image, available_stamps[current_stamp].size);
+		app.run();
+	});
+});
+
+document.addEventListener('keydown', function(e) {
+	if (e.keyCode == 32) {
+		app.pause();
+	}
+
+	if (e.keyCode == 82) {
+		app.resume();
+	}
+});
 
 var available_stamps = [];
 var available_backgrounds = [];
 var current_stamp = 0;
 var current_background = 0;
-var stamp_shapes = ["square", "horizontal", "vertical"]
+var stamp_shapes = ["square", "horizontal", "vertical"];
 var maxscore = 0;
 var square = 0;
 var horizontal = 0;
@@ -38,11 +55,11 @@ $("#stamppickscreen").on("click", ".stampcontainer" ,function() {
 			});		
 		}, 600);
 	}
-})
+});
 
 $(".background_choice").on("click", ".background_icon", function() {
 	setBackground($(this).data("background"));
-})
+});
 
 // Load backgrounds from backgrounds.json into variable available_backgrounds
 function loadBackgrounds() {
@@ -50,8 +67,8 @@ function loadBackgrounds() {
 		available_backgrounds = data.backgrounds;
 		//showBackgroundOptions();
 		//setBackground(current_background);
-		console.log(available_backgrounds);
-	})
+		//console.log(available_backgrounds);
+	});
 }
 
 function setBackground(image) {
@@ -65,7 +82,7 @@ function loadStamps() {
 		showStampOptions();
 		setUserStampScreen(current_stamp);
 		unlockStamps();
-	})
+	});
 }
 
 // Shows which stamp is selected in the Options window, also shows the availability of unlocked stamps
@@ -104,10 +121,10 @@ function unlockStamps() {
 
 // Initializes the current_stamp and maxscore variables from local storage
 function initGame() {
-	if (null != localStorage.getItem("current_stamp")) {
+	if (null !== localStorage.getItem("current_stamp")) {
 		current_stamp = localStorage.getItem("current_stamp");
 	}
-	if (null != localStorage.getItem("maxscore")) {
+	if (null !== localStorage.getItem("maxscore")) {
 		maxscore = localStorage.getItem("maxscore");
 	}
 }
@@ -130,4 +147,4 @@ $(function() {
 	initGame();
 	loadStamps();
 	loadBackgrounds();
-})
+});

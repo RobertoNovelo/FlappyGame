@@ -25,7 +25,6 @@ gulp.task('scripts', function() {
     .bundle()
     .pipe(source('app.js'))
     .pipe(buffer())
-    .pipe(uglify())
     .pipe(gulp.dest('build/js'));
 });
 
@@ -42,7 +41,7 @@ gulp.task('watch', function() {
 });
 
 // Default task
-gulp.task('default', ['jshint', 'watch']);
+gulp.task('default', ['jshint', 'watch', 'scripts']);
 
 // Build task
 gulp.task('build', ['jshint', 'html', 'scripts']);

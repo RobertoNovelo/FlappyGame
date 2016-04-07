@@ -2,11 +2,14 @@
 	"stamps": [
 		{
 			"unlocked": false,
-			"image": "http://unofficialtech.com/p/2016/01/how-much-are-postage-stamps-pufcstzp.jpg",
+			"image": "https://about.usps.com/postal-bulletin/2007/html/pb22203/images/info2.5.4.1.jpg",
 			"stamp_name": "US Flag",
 			"unlocked_score": 0,
 			"score_multiplier": 1,
-			"shape": "square"
+			"shape": "square","size": {
+				"x": 240, 
+				"y": 278
+			}
 		},
 		{
 			"unlocked": false,
@@ -14,7 +17,11 @@
 			"stamp_name": "Tiger",
 			"unlocked_score": 5,
 			"score_multiplier": 1,
-			"shape": "horizontal"
+			"shape": "horizontal",
+			"size": {
+				"x": 800, 
+				"y": 499
+			}
 		},
 		{
 			"unlocked": false,
@@ -22,7 +29,11 @@
 			"stamp_name": "Boat",
 			"unlocked_score": 10,
 			"score_multiplier": 1,
-			"shape": "horizontal"
+			"shape": "horizontal",
+			"size": {
+				"x": 1800, 
+				"y": 1247
+			}
 		},
 		{
 			"unlocked": false,
@@ -30,7 +41,11 @@
 			"stamp_name": "Watermelon",
 			"unlocked_score": 15,
 			"score_multiplier": 1,
-			"shape": "square"
+			"shape": "square",
+			"size": {
+				"x": 600, 
+				"y": 600
+			}
 		},
 		{
 			"unlocked": false,
@@ -38,7 +53,11 @@
 			"stamp_name": "Cantaloupe",
 			"unlocked_score": 20,
 			"score_multiplier": 1,
-			"shape": "square"
+			"shape": "square",
+			"size": {
+				"x": 600, 
+				"y": 600
+			}
 		}
 	]
 }

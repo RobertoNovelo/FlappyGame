@@ -101,7 +101,6 @@ div#stamppickscreen {
 .stampcontainer img {
 	max-width: 12em;
 	max-height: 10em;
-
 }
 
 .selectedstamp {
@@ -114,8 +113,7 @@ div#stamppickscreen {
 	position: absolute;
 	width: 100%;
 	height: 14em;
-	top: calc(50% - 10em);
-	left: 0;
+	top: calc(50% - 13em);
 	text-align: center;
 }
 
@@ -134,12 +132,18 @@ div#stamppickscreen {
 	height: 7em;
 	float: right;
 	overflow: hidden;
+	border: 3px solid black;
+	background-color: lightcyan;
+	border-radius: 10px;
+	margin-right: .5em;
+	margin-top: .25em;
 
 }
 
 .background_choice h2 {
 	float: left;
 	margin-top: 1.9em;
+	margin-left: 1em;
 }
 
 .background_icon {

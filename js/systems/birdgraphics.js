@@ -1,4 +1,4 @@
-var GraphicsSystem = function(entities) {
+var BirdGraphicsSystem = function(entities) {
     this.entities = entities;
     // Canvas is where we draw
     this.canvas = document.getElementById('main-canvas');
@@ -7,12 +7,12 @@ var GraphicsSystem = function(entities) {
     this.interval = null;
 };
 
-GraphicsSystem.prototype.run = function() {
+BirdGraphicsSystem.prototype.run = function() {
     // Run the render loop
     this.interval = window.requestAnimationFrame(this.tick.bind(this));
 };
 
-GraphicsSystem.prototype.tick = function() {
+BirdGraphicsSystem.prototype.tick = function() {
 	// Set the canvas to the correct size if the window is resized
     if (this.canvas.width != this.canvas.offsetWidth ||
         this.canvas.height != this.canvas.offsetHeight) {
@@ -44,8 +44,8 @@ GraphicsSystem.prototype.tick = function() {
     window.requestAnimationFrame(this.tick.bind(this));
 };
 
-GraphicsSystem.prototype.pause = function() {
+BirdGraphicsSystem.prototype.pause = function() {
     window.cancelAnimationFrame(this.interval);   
 }
 
-exports.GraphicsSystem = GraphicsSystem;
+exports.BirdGraphicsSystem = BirdGraphicsSystem;
