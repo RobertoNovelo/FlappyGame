@@ -10,7 +10,7 @@ CollisionSystem.prototype.tick = function() {
         if (!'collision' in entityA.components) {
             continue;
         }
-        if (entityA.components.collision.type == 'rect') {
+        if (entityA.components.collision.type == 'rect' && entityA.components.main) {
             for (var j=i+2; j<this.entities.length; j++) {
                 var entityB = this.entities[j];                
 

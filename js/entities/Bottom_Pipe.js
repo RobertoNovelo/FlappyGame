@@ -3,7 +3,7 @@ var physicsComponent = require("../components/physics/physics");
 var collisionComponent = require("../components/collision/rect");
 var canvas = document.getElementById('main-canvas');
 
-var Bottom_Pipe = function(image_source) {
+var Bottom_Pipe = function() {
     //console.log("Creating Pipes entity");
 
     var physics = new physicsComponent.PhysicsComponent(this);
@@ -11,7 +11,7 @@ var Bottom_Pipe = function(image_source) {
     physics.position.y = 0;
     physics.velocity.x = -0.4;
 
-    var graphics = new graphicsComponent.PipesGraphicsComponent(this, image_source);
+    var graphics = new graphicsComponent.PipesGraphicsComponent(this);
 
     var size = {
         x: 0.1,

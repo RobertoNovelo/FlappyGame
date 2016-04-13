@@ -7,7 +7,7 @@ var app = null;
 
 $('.play-button').on('click', function() {
 	$('#overlay').fadeOut(1000, function() {
-		app = new flappyBird.FlappyBird(available_stamps[current_stamp].image, available_stamps[current_stamp].size);
+		app = new flappyBird.FlappyBird();
 		app.run();
 	});
 });
@@ -69,6 +69,7 @@ function loadBackgrounds() {
 		//setBackground(current_background);
 		//console.log(available_backgrounds);
 	});
+
 }
 
 function setBackground(image) {
@@ -82,6 +83,7 @@ function loadStamps() {
 		showStampOptions();
 		setUserStampScreen(current_stamp);
 		unlockStamps();
+		localStorage.setItem("current_stamp_image", available_stamps[current_stamp].image);
 	});
 }
 
@@ -100,13 +102,16 @@ function setUserStamp(stamp_index) {
 	if (available_stamps[stamp_index].unlocked) {
 		localStorage.setItem("current_stamp", stamp_index);
 		current_stamp = stamp_index;
+		localStorage.setItem("current_stamp_image", available_stamps[current_stamp].image);
 	}
+
 }
 
 // Displays the current selected stamp on the display page before entering the game
 function setUserStampScreen(stamp_index) {
 	$("#userStamp h2").text(available_stamps[stamp_index].stamp_name);
 	$("#userStamp img").attr("src", available_stamps[stamp_index].image);
+
 }
 
 // Determines which stamps are unlocked by iterating through each stamp and checking the maxscore against each stamp's unlocked score value
@@ -123,6 +128,7 @@ function unlockStamps() {
 function initGame() {
 	if (null !== localStorage.getItem("current_stamp")) {
 		current_stamp = localStorage.getItem("current_stamp");
+		
 	}
 	if (null !== localStorage.getItem("maxscore")) {
 		maxscore = localStorage.getItem("maxscore");

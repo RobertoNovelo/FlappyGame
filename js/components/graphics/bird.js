@@ -1,15 +1,7 @@
-var BirdGraphicsComponent = function(entity, image_source, image_size) {
+var BirdGraphicsComponent = function(entity) {
     this.entity = entity;
     this.image = new Image();
-    this.image.src = image_source;
-    this.image_loaded = null;
-    var context = {x: this};
-    var onload = (function() {
-        this.x.image_loaded = true;
-    }).bind(context);
-
-    this.image.onload = onload;
-    this.image_size = image_size
+    this.image.src = localStorage.getItem("current_stamp_image")
     
     
     //console.log(image);
@@ -26,14 +18,14 @@ BirdGraphicsComponent.prototype.draw = function(context) {
     context.save();
     context.translate(position.x, position.y);
 
-    if (this.image_loaded) {
-        context.drawImage(this.image, 0, 0, this.image_size.x, this.image_size.y, 0, 0, size.x, size.y);
-    };
-    /*context.beginPath();
+
+    //context.drawImage(this.image, 0, 0, 300, 300, 0, 0, size.x, size.y);
+
+    context.beginPath();
     context.arc(0, 0, 0.03, 0, 2 * Math.PI);
     context.fillStyle = "gold"
     context.fill();
-    context.closePath();*/
+    context.closePath();
     context.restore();
 };
 

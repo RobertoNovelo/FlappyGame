@@ -3,20 +3,20 @@ var physicsComponent = require("../components/physics/physics");
 var collisionComponent = require("../components/collision/rect");
 var canvas = document.getElementById('main-canvas');
 
-var Ceiling = function(image_source) {
+var Ceiling = function() {
 
 	var physics = new physicsComponent.PhysicsComponent(this);
     physics.position.x = - (canvas.width / canvas.height);
     physics.position.y = 1;
 
-    var graphics = new graphicsComponent.PipesGraphicsComponent(this, image_source);
+    var graphics = new graphicsComponent.PipesGraphicsComponent(this);
 
     var size = {
     	x: 2 * (canvas.width / canvas.height),
     	y: 1 / canvas.height
     };
 
-    var collision = new collisionComponent.RectCollisionComponent(this, image_source);
+    var collision = new collisionComponent.RectCollisionComponent(this);
     collision.onCollision = this.onCollision.bind(this);
     
     this.components = {

@@ -1,7 +1,7 @@
-var PipesGraphicsComponent = function(entity, image_source) {
+var PipesGraphicsComponent = function(entity) {
     this.entity = entity;
     this.image = new Image();
-    this.image.src = image_source;
+    this.image.src = "./images/Mailbox.jpg";
 };
 
 PipesGraphicsComponent.prototype.draw = function(context) {
@@ -13,12 +13,12 @@ PipesGraphicsComponent.prototype.draw = function(context) {
     // General Pipe Graphics Component
     context.save();
     context.translate(position.x, position.y);
-    context.drawImage(this.image, 150, 45, 300, 510, 0, 0, size.x, size.y);
-    /*context.beginPath();
+    //context.drawImage(this.image, 150, 45, 300, 510, 0, 0, size.x, size.y);
+    context.beginPath();
     context.rect(0, 0, size.x, size.y);
     context.fillStyle = "green";
     context.fill();
-    context.closePath();*/
+    context.closePath();
     context.restore();
 };
 

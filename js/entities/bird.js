@@ -4,7 +4,7 @@ var physicsComponent = require("../components/physics/physics");
 var collisionComponent = require("../components/collision/rect");
 
 // Creating a Bird Object with multiple components
-var Bird = function(image_source, image_size) {
+var Bird = function() {
     //console.log("Creating Bird entity");
 
 
@@ -14,13 +14,15 @@ var Bird = function(image_source, image_size) {
     physics.acceleration.y = 0;
 
     // Initializes the Bird's graphics component with the included image that is passed through
-    var graphics = new graphicsComponent.BirdGraphicsComponent(this, image_source, image_size);
+    var graphics = new graphicsComponent.BirdGraphicsComponent(this);
 
     // Sets the size for the CollisionComponent
     var size = {
         x: .06,
         y: .06
     };
+
+    var main = true;
 
     // Initializes the collision component for this rectangular Object using this Object's entity and size
     var collision = new collisionComponent.RectCollisionComponent(this, size);
@@ -30,7 +32,8 @@ var Bird = function(image_source, image_size) {
     	physics: physics,
     	graphics: graphics,
     	collision: collision,
-        size: size
+        size: size,
+        main: main
     };
 };
 

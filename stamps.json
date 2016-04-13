@@ -6,7 +6,8 @@
 			"stamp_name": "US Flag",
 			"unlocked_score": 0,
 			"score_multiplier": 1,
-			"shape": "square","size": {
+			"shape": "square",
+			"size": {
 				"x": 240, 
 				"y": 278
 			}
