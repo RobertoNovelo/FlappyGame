@@ -19,13 +19,14 @@ BirdGraphicsComponent.prototype.draw = function(context) {
     context.translate(position.x, position.y);
 
 
-    //context.drawImage(this.image, 0, 0, 300, 300, 0, 0, size.x, size.y);
+    context.drawImage(this.image, 0, 0, 800, 499, 0, 0, size.x, size.y);
 
-    context.beginPath();
+    /*context.beginPath();
     context.arc(0, 0, 0.03, 0, 2 * Math.PI);
     context.fillStyle = "gold"
     context.fill();
-    context.closePath();
+    context.closePath();*/
+
     context.restore();
 };
 

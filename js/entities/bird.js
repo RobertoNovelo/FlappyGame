@@ -11,15 +11,15 @@ var Bird = function() {
     // Sets up the Bird's physics component and initializes position in the middle of the screen 
     var physics = new physicsComponent.PhysicsComponent(this);
     physics.position.y = 0.5;
-    physics.acceleration.y = 0;
+    physics.acceleration.y = -1.3;
 
     // Initializes the Bird's graphics component with the included image that is passed through
     var graphics = new graphicsComponent.BirdGraphicsComponent(this);
 
     // Sets the size for the CollisionComponent
     var size = {
-        x: .06,
-        y: .06
+        x: .1,
+        y: .1
     };
 
     var main = true;

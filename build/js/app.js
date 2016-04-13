@@ -68,13 +68,14 @@ BirdGraphicsComponent.prototype.draw = function(context) {
     context.translate(position.x, position.y);
 
 
-    //context.drawImage(this.image, 0, 0, 300, 300, 0, 0, size.x, size.y);
+    context.drawImage(this.image, 0, 0, 800, 499, 0, 0, size.x, size.y);
 
-    context.beginPath();
+    /*context.beginPath();
     context.arc(0, 0, 0.03, 0, 2 * Math.PI);
     context.fillStyle = "gold"
     context.fill();
-    context.closePath();
+    context.closePath();*/
+
     context.restore();
 };
 
@@ -330,15 +331,15 @@ var Bird = function() {
     // Sets up the Bird's physics component and initializes position in the middle of the screen 
     var physics = new physicsComponent.PhysicsComponent(this);
     physics.position.y = 0.5;
-    physics.acceleration.y = 0;
+    physics.acceleration.y = -1.3;
 
     // Initializes the Bird's graphics component with the included image that is passed through
     var graphics = new graphicsComponent.BirdGraphicsComponent(this);
 
     // Sets the size for the CollisionComponent
     var size = {
-        x: .06,
-        y: .06
+        x: .1,
+        y: .1
     };
 
     var main = true;
@@ -367,6 +368,7 @@ var graphicsSystem = require('./systems/graphics');
 var physicsSystem = require('./systems/physics');
 var inputSystem = require('./systems/input');
 var PipeSpawnSystem = require('./systems/PipeSpawn');
+var scoreSystem = require('./systems/score');
 
 
 var bird = require('./entities/bird');
@@ -381,6 +383,7 @@ var FlappyBird = function() {
     this.physics = new physicsSystem.PhysicsSystem(this.entities);
     this.input = new inputSystem.InputSystem(this.entities);
     this.PipeSpawn = new PipeSpawnSystem.PipeSpawnSystem(this.entities);
+    this.score = new scoreSystem.ScoreSystem();
 };
 
 FlappyBird.prototype.run = function() {
@@ -388,22 +391,25 @@ FlappyBird.prototype.run = function() {
     this.physics.run();
     this.input.run();
     this.PipeSpawn.run();
+    this.score.run();
 };
 
 FlappyBird.prototype.pause = function() {
 	this.graphics.pause();
     this.physics.pause();
     this.PipeSpawn.pause();
+    this.score.pause();
 };
 
 FlappyBird.prototype.resume = function() {
 	this.graphics.run();
     this.physics.run();
     this.PipeSpawn.run();
+    this.score.resume();
 };
 
 exports.FlappyBird = FlappyBird;
-},{"./entities/Ceiling":6,"./entities/Floor":7,"./entities/PipeCleaner":8,"./entities/bird":10,"./systems/PipeSpawn":13,"./systems/graphics":15,"./systems/input":16,"./systems/physics":17}],12:[function(require,module,exports){
+},{"./entities/Ceiling":6,"./entities/Floor":7,"./entities/PipeCleaner":8,"./entities/bird":10,"./systems/PipeSpawn":13,"./systems/graphics":15,"./systems/input":16,"./systems/physics":17,"./systems/score":18}],12:[function(require,module,exports){
 var flappyBird = require('./flappy_bird');
 var app = null;
 
@@ -770,4 +776,28 @@ PhysicsSystem.prototype.pause = function() {
 }
 
 exports.PhysicsSystem = PhysicsSystem;
-},{"./collision":14}]},{},[12]);
+},{"./collision":14}],18:[function(require,module,exports){
+var ScoreSystem = function() {
+	var score;
+};
+
+ScoreSystem.prototype.run = function() {
+    this.score = 0;
+    setTimeout(this.interval = window.setInterval(this.tick.bind(this), 2000), 11000);
+};
+
+ScoreSystem.prototype.tick = function() {
+    this.score++;
+    console.log(this.score);    
+};
+
+ScoreSystem.prototype.pause = function() {
+    clearInterval(this.interval);   
+};
+
+ScoreSystem.prototype.resume = function() {
+	this.interval = window.setInterval(this.tick.bind(this), 2000);
+}
+
+exports.ScoreSystem = ScoreSystem;
+},{}]},{},[12]);
