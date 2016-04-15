@@ -70,7 +70,15 @@ CollisionSystem.prototype.tick = function() {
                 }
             }
         }
+        if(entityA.components.collision.boolean) {
+            $(".game-screen").hide();
+            $(".endgame").show();
+        }
     }
 };
+
+/*CollisionSystem.prototype.callback = function() {
+    
+};*/
 
 exports.CollisionSystem = CollisionSystem;

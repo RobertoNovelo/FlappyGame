@@ -152,3 +152,25 @@ div#stamppickscreen {
 	margin-top: 1em;
 	margin-left: 1em;
 }
+
+.hidden {
+	display: none;
+}
+
+.endgame {
+	top: 50%;
+	left: calc(50% - 15rem);
+	text-align: center;
+	position: fixed;
+	z-index: 2;
+	display: flex;
+	justify-content: center;
+	display: none;
+}
+
+.end-game-button {
+	width: 15rem;
+	height: 7rem;
+	background-color: gold;
+
+}

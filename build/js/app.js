@@ -377,13 +377,14 @@ var ceiling = require('./entities/Ceiling');
 var pipecleaner = require('./entities/PipeCleaner');
 
 
-var FlappyBird = function() {
+var FlappyBird = function(fn) {
     this.entities = [new bird.Bird(), new pipecleaner.PipeCleaner(), new floor.Floor(), new ceiling.Ceiling()];
     this.graphics = new graphicsSystem.GraphicsSystem(this.entities); 
     this.physics = new physicsSystem.PhysicsSystem(this.entities);
     this.input = new inputSystem.InputSystem(this.entities);
     this.PipeSpawn = new PipeSpawnSystem.PipeSpawnSystem(this.entities);
     this.score = new scoreSystem.ScoreSystem();
+    bird.onCollision = fn;
 };
 
 FlappyBird.prototype.run = function() {
@@ -408,6 +409,10 @@ FlappyBird.prototype.resume = function() {
     this.score.resume();
 };
 
+FlappyBird.prototype.endgame = function() {
+
+};
+
 exports.FlappyBird = FlappyBird;
 },{"./entities/Ceiling":6,"./entities/Floor":7,"./entities/PipeCleaner":8,"./entities/bird":10,"./systems/PipeSpawn":13,"./systems/graphics":15,"./systems/input":16,"./systems/physics":17,"./systems/score":18}],12:[function(require,module,exports){
 var flappyBird = require('./flappy_bird');
@@ -419,7 +424,8 @@ var app = null;
 
 $('.play-button').on('click', function() {
 	$('#overlay').fadeOut(1000, function() {
-		app = new flappyBird.FlappyBird();
+		$('.game-screen').fadeIn(1000);
+		app = new flappyBird.FlappyBird(endGame);
 		app.run();
 	});
 });
@@ -450,6 +456,22 @@ $("#stamppick").on("click", function() {
 	$(".options").fadeOut("fast", function() {
 		$("#stamppickscreen").fadeIn("fast");
 	});		
+});
+
+$("#restart").on("click", function() {
+	$(".endgame").fadeOut("fast", function() {
+		app = new flappyBird.FlappyBird();
+		app.run();
+	});
+
+});
+
+$("#return-home").on("click", function() {
+	$(".endgame").hide("fast", function() {
+		$("#overlay").fadeIn("fast");
+		app.pause();
+		endGame(0);
+	});
 });
 
 // Select a new stamp by clicking on it, updates the stamp on the Preview page through setUserStampScreen(), and then closes the Options window
@@ -550,15 +572,16 @@ function initGame() {
 // Sets the high score at the end of each game and runs unlockStamps()
 function endGame(score) {
 	var newHigh = false;
-
 	if (score > maxscore) {
 		newHigh = true;
 		localStorage.setItem("maxscore", score);
 		maxscore = score;
 		unlockStamps();
 	}
-	return newHigh;
+	return newHigh;	
 }
+
+
 
 // Runs initGame(), loadStamps(), and loadBackgrounds() when page is loading
 $(function() {
@@ -666,8 +689,16 @@ CollisionSystem.prototype.tick = function() {
                 }
             }
         }
+        if(entityA.components.collision.boolean) {
+            $(".game-screen").hide();
+            $(".endgame").show();
+        }
     }
 };
+
+/*CollisionSystem.prototype.callback = function() {
+    
+};*/
 
 exports.CollisionSystem = CollisionSystem;
 },{}],15:[function(require,module,exports){

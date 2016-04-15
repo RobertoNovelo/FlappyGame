@@ -7,7 +7,8 @@ var app = null;
 
 $('.play-button').on('click', function() {
 	$('#overlay').fadeOut(1000, function() {
-		app = new flappyBird.FlappyBird();
+		$('.game-screen').fadeIn(1000);
+		app = new flappyBird.FlappyBird(endGame);
 		app.run();
 	});
 });
@@ -38,6 +39,23 @@ $("#stamppick").on("click", function() {
 	$(".options").fadeOut("fast", function() {
 		$("#stamppickscreen").fadeIn("fast");
 	});		
+});
+
+$("#restart").on("click", function() {
+	$(".endgame").hide("fast", function() {
+		$('.game-screen').show();
+		app = new flappyBird.FlappyBird();
+		app.run();
+	});
+
+});
+
+$("#return-home").on("click", function() {
+	$(".endgame").hide("fast", function() {
+		$("#overlay").fadeIn("fast");
+		app.pause();
+		endGame(0);
+	});
 });
 
 // Select a new stamp by clicking on it, updates the stamp on the Preview page through setUserStampScreen(), and then closes the Options window
@@ -138,15 +156,16 @@ function initGame() {
 // Sets the high score at the end of each game and runs unlockStamps()
 function endGame(score) {
 	var newHigh = false;
-
 	if (score > maxscore) {
 		newHigh = true;
 		localStorage.setItem("maxscore", score);
 		maxscore = score;
 		unlockStamps();
 	}
-	return newHigh;
+	return newHigh;	
 }
+
+
 
 // Runs initGame(), loadStamps(), and loadBackgrounds() when page is loading
 $(function() {
